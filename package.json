@@ -1,0 +1,23 @@
+{
+  "name": "smallmovesclub.github.io",
+  "version": "0.2.0",
+  "description": "Small Moves Club web site",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smallmovesclub/smallmovesclub.github.io.git"
+  },
+  "author": "Joost Schuur <jschuur@jschuur.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smallmovesclub/smallmovesclub.github.io/issues"
+  },
+  "homepage": "https://github.com/smallmovesclub/smallmovesclub.github.io",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-ruby-sass": "^1.0.5"
+  }
+}
