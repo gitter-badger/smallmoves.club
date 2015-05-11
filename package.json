@@ -18,6 +18,7 @@
   "homepage": "https://github.com/smallmovesclub/smallmovesclub.github.io",
   "devDependencies": {
     "gulp": "^3.8.11",
-    "gulp-ruby-sass": "^1.0.5"
+    "gulp-ruby-sass": "^1.0.5",
+    "gulp-sitemap": "^2.1.0"
   }
 }
