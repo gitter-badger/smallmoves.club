@@ -8,7 +8,7 @@ gulp.task('styles', function() {
 });
 
 gulp.task('sitemap', function () {
-	return gulp.src('index.html')
+	return gulp.src('public/*.html')
 	       .pipe(sitemap({
 	        	siteUrl: 'http://smallmoves.club'
 	        }))
@@ -17,7 +17,8 @@ gulp.task('sitemap', function () {
 
 gulp.task('watch',  function() {
 	gulp.watch('sass/*.scss', ['styles']);
+	gulp.watch('public/*.html', ['sitemap']);
 });
 
-gulp.task('default', ['styles'], function() {
+gulp.task('default', ['styles', 'sitemap'], function() {
 });
