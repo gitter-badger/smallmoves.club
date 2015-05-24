@@ -36,7 +36,7 @@
 				<nav id="nav">
 					<ul>
 						<li class="current"><a href="#main">About</a></li>
-						<li><a href="https://smallmoves.typeform.com/to/IqHTod" class="button special">Join For Free</a></li>
+						<li><a href="#cta" class="button special">Join For Free</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -92,44 +92,73 @@
 
 							</div>
 							<div class="4u 12u(narrower)">
+							<section>
+								<span class="icon featured fa-thumbs-up"></span>
+								<header>
+									<h3>Get advice and feedback</h3>
+								</header>
+								<p>Find inspiration by discussing your ideas and get concrete tips and opinions on what you’ve accomplished so far. Get a virtual pat on the back when you’ve shipped something.</p>
+							</section>
 
-								<section>
-									<span class="icon featured fa-thumbs-up"></span>
-									<header>
-										<h3>Get advice and feedback</h3>
-									</header>
-									<p>Find inspiration by discussing your ideas and get concrete tips and opinions on what you’ve accomplished so far. Get a virtual pat on the back when you’ve shipped something.</p>
-								</section>
-
-							</div>
-							<div class="4u 12u(narrower)">
-
-								<section>
-									<span class="icon featured fa-users"></span>
-									<header>
-										<h3>Find an accountability buddy</h3>
-									</header>
-									<p>Team up with someone you share similar goals with and nudge each other towards them. They’ve got your permission to be all over you about your progress.</p>
-								</section>
-
-							</div>
 						</div>
-					</section>
+						<div class="4u 12u(narrower)">
+
+							<section>
+								<span class="icon featured fa-users"></span>
+								<header>
+									<h3>Find an accountability buddy</h3>
+								</header>
+								<p>Team up with someone you share similar goals with and nudge each other towards them. They’ve got your permission to be all over you about your progress.</p>
+							</section>
+
+						</div>
+					</div>
+				</section>
 			</article>
 
 		<!-- CTA -->
 			<section id="cta">
+				<section class="container 75%">
 
-				<header>
-					<h2>Ready to do <strong>something</strong>?</h2>
-					<p>Small Moves Club isn’t just for tech products. You don’t even have to ‘ship’ something for the public. Write a short story, work on your garden, learn a new language, start a new hobby. Even if learning to code or launching an app isn’t your goal, we hope our method can give you that gentle push you needed to accomplish something you can be proud of.</p>
-				</header>
-				<footer>
-					<ul class="buttons">
-						<li><a href="https://smallmoves.typeform.com/to/IqHTod" class="button special">Join For Free</a></li>
-					</ul>
-				</footer>
+					<header>
+						<h2>Ready to become a <strong>Small Mover</strong>?</h2>
+						<p>Small Moves Club isn’t just for tech products. You don’t even have to ‘ship’ something for the public. Write a short story, work on your garden, learn a new language, start a new hobby. Even if learning to code or launching an app isn’t your goal, we hope our method can give you that gentle push you needed to accomplish something you can be proud of.</p>
+						<h2>Join us</h2>
+					</header>
 
+					<form action="/signup" method="POST">
+						<div class="row 50%">
+							<div class="6u 12u(mobile)">
+								<input type="text" name="first_name" placeholder="First name" />
+							</div>
+							<div class="6u 12u(mobile)">
+								<input type="text" name="last_name" placeholder="Last name" />
+							</div>
+						</div>
+						<div class="row 50%">
+							<div class="12u">
+								<input type="text" name="email" placeholder="Email address" />
+							</div>
+						</div>
+							<div class="row 50%">
+								<div class="12u">
+									<label><input type="checkbox" name="newsletter" checked> Join the Small Moves Club Newsletter</label>
+								</div>
+							</div>
+						<div class="row 50%">
+							<div class="12u">
+								<textarea name="goal" placeholder="What's something you've been trying to accomplish for a while that you're struggling with?" rows="7"></textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="12u">
+								<ul class="buttons">
+									<li><input type="submit" class="special" value="Join For Free" /></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+				</section>
 			</section>
 
 		<!-- Footer -->
