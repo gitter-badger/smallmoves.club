@@ -3,20 +3,17 @@ Pre-launch
 * Use PM2 for deployment (https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#getting-started-with-deployment)
 * Determine prod/staging port based on environment varaible
 * Give Node dedicated user on production server
-* Remove the node_modules directory from git (the right way?)
 
 
 Post-launch
 
 * Announce signup to admins channel
-* Trim clutter in repo from Twenty template
 * Rebuild sitemap based on any HTML page changes and add to watch Gulp task
 * Pull site header/footer form HTML partials
 * Fix transactional email template usage
 * Different config file per environment
 * Flag to enable console.log (and figure out where text file is when run via PM2)
 * Enable Google Sheets debug status based on environment
-* Rename GitHub repo (remove CNAME file)
 * Tweet about site on thank you page
 
 
