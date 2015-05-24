@@ -12,10 +12,12 @@ Post-launch
 
 * Trim clutter in repo from Twenty template
 * Rebuild sitemap based on any HTML page changes and add to watch Gulp task
+* Pull site header/footer form HTML partials
 * Welcome email to new members
 * Different config file per environment
 * Flag to enable console.log (and figure out where text file is when run via PM2)
 * Rename GitHub repo (remove CNAME file)
+* Tweet about site on thank you page
 
 
 Later
