@@ -28,7 +28,7 @@ apps : [
       ref  : "origin/master",
       repo : "https://github.com/smallmovesclub/smallmoves.club.git",
       path : "/www/smallmoves.club",
-      "post-deploy" : "pm2 startOrRestart ecosystem.json5 --env production"
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json5 --env production"
     },
     dev : {
       user : "node",
@@ -36,7 +36,7 @@ apps : [
       ref  : "origin/staging",
       repo : "https://github.com/smallmovesclub/smallmoves.club.git",
       path : "/www/staging.smallmoves.club",
-      "post-deploy" : "pm2 startOrRestart ecosystem.json5 --env dev",
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json5 --env dev",
       env  : {
         NODE_ENV: "dev"
       }
