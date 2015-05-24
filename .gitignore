@@ -1,1 +1,4 @@
 .sass-cache/
+node_modules
+config.json
+googleapi-privatekey.pem

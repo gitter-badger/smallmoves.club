@@ -4,7 +4,7 @@ var gulp    = require('gulp'),
 
 gulp.task('styles', function() {
 	return sass('sass/style.scss', { style: 'nested' })
-	       .pipe(gulp.dest('css'));
+	       .pipe(gulp.dest('public/css'));
 });
 
 gulp.task('sitemap', function () {
@@ -12,7 +12,7 @@ gulp.task('sitemap', function () {
 	       .pipe(sitemap({
 	        	siteUrl: 'http://smallmoves.club'
 	        }))
-           .pipe(gulp.dest('./'));
+           .pipe(gulp.dest('./public'));
 });
 
 gulp.task('watch',  function() {
