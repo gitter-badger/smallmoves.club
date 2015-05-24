@@ -18,7 +18,8 @@ app.post('/signup', function(request, response) {
 		if(request.body.newsletter == 'on')
 			tasks.newsletterSubscribe(request.body);
 		tasks.slackInvite(request.body);
-		tasks.notifySignup(request.body);		
+		tasks.notifySignup(request.body);
+		tasks.signupAnnounce(request.body);
 	}
 
 	response.statusCode = 302;

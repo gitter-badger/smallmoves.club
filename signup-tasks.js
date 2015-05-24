@@ -99,3 +99,17 @@ exports.notifySignup = function(data) {
 	    console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
 	});
 };
+
+exports.signupAnnounce = function(data) {
+	request.post({url: config['SIGNUPS_WEBHOOK'],
+	              body: JSON.stringify({
+              		     	text: data.name + " just signed up to Small Moves!",
+              		     	channel: config['SIGNUPS_CHANNEL'],
+              			  	username: "smallbot",
+              		     	icon_url: "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2015-05-17/4943857629_7d41bc45de2198efa81e_72.jpg"
+		              	})
+	             }, function (error, response, body) {
+				 	console.log('Signup announcement sent to ' + config['SIGNUPS_CHANNEL'] + ' (' + body + ')');
+	             });
+
+}

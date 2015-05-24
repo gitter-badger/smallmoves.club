@@ -2,7 +2,6 @@ Post-launch
 
 * Fix transactional email template usage
 * Pull site header/footer form HTML partials (adapt sitemap Gulp task after this)
-* Announce signup to admins channel
 * Determine prod/staging port based on environment varaible
 * Different config file per environment
 * Flag to enable console.log (and figure out where text file is when run via PM2)
