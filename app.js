@@ -11,6 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.post('/signup', function(request, response) {
+	request.body.name = request.body.first_name + " " + request.body.last_name;
+
 	if(typeof config['RUN_TASKS'] != 'undefined' && config['RUN_TASKS'] == true) {
 		tasks.logMember(request.body);
 		if(request.body.newsletter == 'on')

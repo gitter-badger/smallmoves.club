@@ -24,7 +24,7 @@ exports.logMember = function(data) {
 
 				var lastRow = info.lastRow;
 				var update = {};
-				update[lastRow + 1] = {1: data.name, 2: data.email, 3: data.newsletter};
+				update[lastRow + 1] = {1: data.name, 2: data.email, 3: data.newsletter, 6: data.goal};
 
 				spreadsheet.add(update);
 				spreadsheet.send(function(err) {
@@ -39,7 +39,12 @@ exports.newsletterSubscribe = function(data) {
 
 	var mcData = {
     	id: config['MAILCHIMP_LIST_ID'],
-    	email: { email: data.email }
+    	email: { email: data.email },
+    	merge_vars: {
+    		EMAIL: data.email,
+    		FNAME: data.first_name,
+    		LNAME: data.last_name
+    	}
     };
 
     mc.lists.subscribe(mcData, function(data) {
