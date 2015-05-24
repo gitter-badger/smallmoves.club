@@ -1,0 +1,45 @@
+{
+apps : [
+
+    // First application
+    {
+      name      : "smallmoves",
+      script    : "app.js",
+      env: {
+        COMMON_VARIABLE: "true"
+      },
+      env_production : {
+        NODE_ENV: "production"
+      }
+    }
+
+  ],
+
+
+  /**
+   * PM2 help you to deploy apps over your servers
+   * For more help go to :
+   * https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#deployment-pm2--090
+   */
+  deploy : {
+    production : {
+      user : "node",
+      host : "178.62.10.18",
+      ref  : "origin/master",
+      repo : "https://github.com/smallmovesclub/smallmoves.club.git",
+      path : "/www/smallmoves.club",
+      "post-deploy" : "pm2 startOrRestart ecosystem.json5 --env production"
+    },
+    dev : {
+      user : "node",
+      host : "178.62.10.18",
+      ref  : "origin/staging",
+      repo : "https://github.com/smallmovesclub/smallmoves.club.git",
+      path : "/www/staging.smallmoves.club",
+      "post-deploy" : "pm2 startOrRestart ecosystem.json5 --env dev",
+      env  : {
+        NODE_ENV: "dev"
+      }
+    }
+  }
+}
