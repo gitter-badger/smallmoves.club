@@ -30,15 +30,15 @@ apps : [
       path : "/www/smallmoves.club",
       "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json5 --env production"
     },
-    dev : {
+    staging : {
       user : "node",
       host : "178.62.10.18",
       ref  : "origin/staging",
       repo : "https://github.com/smallmovesclub/smallmoves.club.git",
       path : "/www/staging.smallmoves.club",
-      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json5 --env dev",
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json5 --env staging",
       env  : {
-        NODE_ENV: "dev"
+        NODE_ENV: "staging"
       }
     }
   }
