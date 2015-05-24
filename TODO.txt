@@ -3,6 +3,7 @@ Pre-launch
 * Use PM2 for deployment (https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#getting-started-with-deployment)
 * Determine prod/staging port based on environment varaible
 * Give Node dedicated user on production server
+* Remove the node_modules directory from git (the right way?)
 
 
 Post-launch
