@@ -1,0 +1,18 @@
+Pre-launch
+
+* Thank you page
+* Use PM2 for deployment (https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#getting-started-with-deployment)
+* Determine prod/staging port based on environment varaible
+* Give Node dedicated user on production server
+* Announce signup to admins channel
+
+
+Post-launch
+
+* Trim clutter in repo from Twenty template
+* Welcome email to new members
+
+
+Later
+
+* Store data in local DB
