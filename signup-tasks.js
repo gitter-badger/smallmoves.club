@@ -4,6 +4,7 @@ var GoogleSpreadsheet = require("edit-google-spreadsheet");
 var mcapi = require('mailchimp-api');
 var request = require('request');
 var mandrill = require('mandrill-api/mandrill');
+var moment = require('moment');
 
 exports.logMember = function(data) {
 	GoogleSpreadsheet.load({
@@ -22,9 +23,10 @@ exports.logMember = function(data) {
 			spreadsheet.receive(function(err, rows, info) {
 				if(err) throw err;
 
+				var join_date = moment().format('llll');
 				var lastRow = info.lastRow;
 				var update = {};
-				update[lastRow + 1] = {1: data.name, 2: data.email, 3: data.newsletter, 6: data.goal};
+				update[lastRow + 1] = {1: data.name, 2: data.email, 3: data.newsletter, 5: join_date, 6: data.goal};
 
 				spreadsheet.add(update);
 				spreadsheet.send(function(err) {
