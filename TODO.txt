@@ -11,6 +11,7 @@ Post-launch
 
 * Trim clutter in repo from Twenty template
 * Welcome email to new members
+* Different config file per environment
 
 
 Later
