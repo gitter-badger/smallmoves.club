@@ -1,0 +1,36 @@
+{
+apps : [
+    {
+      name      : "smallmoves-staging",
+      script    : "app.js",
+      env: {
+        COMMON_VARIABLE: "true"
+      },
+      env_staging: {
+        NODE_ENV: "staging",
+        PORT: 8002
+      }
+    }
+  ],
+
+
+  /**
+   * PM2 help you to deploy apps over your servers
+   * For more help go to :
+   * https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#deployment-pm2--090
+   */
+  deploy : {
+    staging : {
+      user : "node",
+      host : "178.62.10.18",
+      ref  : "origin/staging",
+      repo : "https://github.com/smallmovesclub/smallmoves.club.git",
+      path : "/www/staging.smallmoves.club",
+      "post-deploy" : "npm install && pm2 startOrRestart staging.json5 --env staging",
+      env  : {
+        NODE_ENV: "staging",
+        PORT: 8002
+      }
+    }
+  }
+}

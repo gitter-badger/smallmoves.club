@@ -10,18 +10,6 @@ apps : [
         NODE_ENV: "production",
         PORT: 8001
       }
-    },
-
-    {
-      name      : "smallmoves-staging",
-      script    : "app.js",
-      env: {
-        COMMON_VARIABLE: "true"
-      },
-      env_production: {
-        NODE_ENV: "staging",
-        PORT: 8002
-      }
     }
   ],
 
@@ -38,22 +26,10 @@ apps : [
       ref  : "origin/master",
       repo : "https://github.com/smallmovesclub/smallmoves.club.git",
       path : "/www/smallmoves.club",
-      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json5 --env production",
+      "post-deploy" : "npm install && pm2 startOrRestart production.json5 --env production",
       env  : {
         NODE_ENV: "production",
         PORT: 8001
-      }
-    },
-    staging : {
-      user : "node",
-      host : "178.62.10.18",
-      ref  : "origin/staging",
-      repo : "https://github.com/smallmovesclub/smallmoves.club.git",
-      path : "/www/staging.smallmoves.club",
-      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json5 --env staging",
-      env  : {
-        NODE_ENV: "staging",
-        PORT: 8002
       }
     }
   }
