@@ -5,8 +5,9 @@ var tasks = require('./signup-tasks');
 
 var app = express();
 
-app.use(express.static('public'));
+app.set('port', process.env.PORT || 8001);
 
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -27,6 +28,6 @@ app.post('/signup', function(request, response) {
 	response.end();
 });
 
-app.listen(8001, function() {
-	console.log('Listening...');
+app.listen(app.get('port'), function() {
+	console.log('Listening on port ' + app.get('port') + '... (' + process.env.NODE_ENV + ')');
 });
