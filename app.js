@@ -13,6 +13,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.post('/signup', function(request, response) {
+	request.body.email = request.body.email.trim();
+	request.body.first_name = request.body.first_name.trim();
+	request.body.last_name = request.body.last_name.trim();
 	request.body.name = request.body.first_name + " " + request.body.last_name;
 
 	if(typeof config['RUN_TASKS'] != 'undefined' && config['RUN_TASKS'] == true) {
