@@ -5,6 +5,7 @@ var mcapi = require('mailchimp-api');
 var request = require('request');
 var mandrill = require('mandrill-api/mandrill');
 var moment = require('moment');
+var Member = require("./app/models/member");
 
 exports.logMember = function(data) {
 	GoogleSpreadsheet.load({
@@ -34,6 +35,20 @@ exports.logMember = function(data) {
 				});
 			});
 		});
+
+	var member = new Member({
+		first_name: data.first_name,
+		last_name: data.last_name,
+		email: data.email,
+		newsletter: data.newsletter,
+		goal: data.goal
+	});
+
+	member.save(function(err) {
+		if (err) throw err;
+
+		console.log('Member saved successfully to the database.');
+	});
 };
 
 exports.newsletterSubscribe = function(data) {
