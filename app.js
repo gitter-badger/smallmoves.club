@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser  = require('body-parser');
 var config = require('./config.json')
 var tasks = require('./signup-tasks');
+var Member = require("./app/models/member");
 
 var app = express();
 
@@ -26,6 +27,16 @@ app.post('/signup', function(request, response) {
 	response.statusCode = 302;
 	response.setHeader("Location", '/thanks.html');
 	response.end();
+});
+
+app.get('/api/members.json', function (request, response) {
+	Member.find(function(err, members) {
+	    if (err)
+	        response.send(err);
+
+	    // TODO: Whitelist fields
+	    response.json(members);
+	});
 });
 
 app.listen(app.get('port'), function() {
