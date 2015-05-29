@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser  = require('body-parser');
 var config = require('./config.json')
 var tasks = require('./signup-tasks');
-var Member = require("./app/models/member");
+var Member = require("./models/member");
 
 var app = express();
 

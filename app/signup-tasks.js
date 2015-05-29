@@ -5,7 +5,7 @@ var mcapi = require('mailchimp-api');
 var request = require('request');
 var mandrill = require('mandrill-api/mandrill');
 var moment = require('moment');
-var Member = require("./app/models/member");
+var Member = require("./models/member");
 
 exports.logMember = function(data) {
 	GoogleSpreadsheet.load({
