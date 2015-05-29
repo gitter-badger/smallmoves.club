@@ -7,12 +7,12 @@ var Schema = mongoose.Schema;
 var memberSchema = new Schema({
   first_name: String,
   last_name: String,
-  email: { type: String, require: true, unique: true },
+  email: { type: String, required: true, unique: true },
   newsletter: Boolean,
   twitter: String,
   goal: String,
-  created_at: Date,
-  updated_at: Date
+  signup_date: { type: Date, default: Date.now },
+  joined_slack: { type: Boolean, default: false }
 });
 
 memberSchema.methods.name = function() {
