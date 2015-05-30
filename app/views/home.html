@@ -1,46 +1,6 @@
-<!DOCTYPE HTML>
-<!--
-	Twenty by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head itemscope itemtype="http://schema.org/WebSite">
-		<title itemprop='name'>Small Moves Club</title>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="A motivational community to celebrate little victories." />
-		<meta name="keywords" content="motivation, progress, slack, community, procrastination, productivity, self help" />
-		<link rel="canonical" href="http://smallmoves.club/" itemprop="url">
-		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/jquery.dropotron.min.js"></script>
-		<script src="js/jquery.scrolly.min.js"></script>
-		<script src="js/jquery.scrollgress.min.js"></script>
-		<script src="js/skel.min.js"></script>
-		<script src="js/skel-layers.min.js"></script>
-		<script src="js/init.js"></script>
-		<noscript>
-			<link rel="stylesheet" href="css/skel.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-wide.css" />
-			<link rel="stylesheet" href="css/style-noscript.css" />
-		</noscript>
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
-	</head>
-	<body class="index">
+{{!< main}}
 
-		<!-- Header -->
-			<header id="header" class="alt">
-				<h1 id="logo"><a href="/">Small Moves Club</a></h1>
-				<nav id="nav">
-					<ul>
-						<li class="current"><a href="#main">About</a></li>
-						<li><a href="#cta" class="button special">Join For Free</a></li>
-					</ul>
-				</nav>
-			</header>
-
+{{#contentFor 'headerClass'}}alt reveal{{/contentFor}}
 		<!-- Banner -->
 			<section id="banner">
 
@@ -123,7 +83,7 @@
 					<header>
 						<h2>Ready to become a <strong>Small Mover</strong>?</h2>
 						<p>Small Moves Club isn’t just for tech products. You don’t even have to ‘ship’ something for the public. Write a short story, work on your garden, learn a new language, start a new hobby. Even if learning to code or launching an app isn’t your goal, we hope our method can give you that gentle push you needed to accomplish something you can be proud of.</p>
-						<h2>Join us</h2>
+						<h2>Join <strong>{{ memberCount }}</strong> Small Movers</h2>
 					</header>
 
 					<form action="/signup" method="POST">
@@ -160,28 +120,3 @@
 					</form>
 				</section>
 			</section>
-
-		<!-- Footer -->
-			<footer id="footer">
-
-				<ul class="icons">
-					<li><a href="https://twitter.com/smallmovesclub" class="icon circle fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="https://github.com/smallmovesclub" class="icon circle fa-github"><span class="label">Github</span></a></li>
-				</ul>
-
-				<ul class="copyright">
-					<li>&copy; Small Moves Club & <a href="https://twitter.com/joostschuur">Joost Schuur</a></li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li><li>Contact: <a href="mailto:hello@smallmoves.club">hello@smallmoves.club</a>.</li>
-				</ul>
-
-			</footer>
-			<script>
-				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-				ga('create', 'UA-62813440-1', 'auto');
-				ga('send', 'pageview');
-			</script>
-	</body>
-</html>

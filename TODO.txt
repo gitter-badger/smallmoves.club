@@ -1,14 +1,12 @@
-Post-launch
+Sooner:
 
 * Fix transactional email template usage
-* Pull site header/footer form HTML partials (adapt sitemap Gulp task after this)
 * Different config file per environment
 * Flag to enable console.log (and figure out where text file is when run via PM2)
 * Enable Google Sheets debug status based on environment
-* Tweet about site on thank you page
-
+* Prevent duplicate email address signup
 
 Later
 
 * Welcome email to new members
-* Store data in local DB
+* Update joined_slack when invite accepted

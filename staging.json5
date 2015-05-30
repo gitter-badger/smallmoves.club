@@ -2,7 +2,7 @@
 apps : [
     {
       name      : "smallmoves-staging",
-      script    : "app.js",
+      script    : "app/main.js",
       env: {
         COMMON_VARIABLE: "true"
       },
