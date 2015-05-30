@@ -3,7 +3,7 @@ var gulp    = require('gulp'),
     sitemap = require('gulp-sitemap');
 
 gulp.task('styles', function() {
-	return sass('sass/style.scss', { style: 'nested' })
+	return sass('sass/', { style: 'nested' })
 	       .pipe(gulp.dest('public/css'));
 });
 

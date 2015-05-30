@@ -136,7 +136,7 @@ $pattern-background-size: 10em;
 /* Banner */
 
 	#banner {
-		background-size: $pattern-background-size, $pattern-background-size, auto, cover;
+		background-size: auto, cover;
 		padding: 6em 0;
 		
 		.inner {
