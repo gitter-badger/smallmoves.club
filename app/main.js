@@ -1,4 +1,5 @@
 var express = require('express');
+var hbs = require('express-hbs');
 var bodyParser  = require('body-parser');
 var config = require('./config.json')
 var tasks = require('./signup-tasks');
@@ -6,11 +7,22 @@ var Member = require("./models/member");
 
 var app = express();
 
+// Set up handlebars template engine
+app.engine('html', hbs.express4({ extname: '.html', layoutsDir: __dirname + '/views/layouts' }));
+app.set('view engine', 'html');
+app.set('views', __dirname + '/views');
+
 app.set('port', process.env.PORT || 8001);
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.get('/', function (request, response) {
+	Member.count({ "joined_slack": true }, function (err, count) {
+	    response.render('home', { headerClass: "alt reveal", memberCount: count });
+	})
+});
 
 app.post('/signup', function(request, response) {
 	request.body.email = request.body.email.trim();
@@ -27,9 +39,7 @@ app.post('/signup', function(request, response) {
 		tasks.signupAnnounce(request.body);
 	}
 
-	response.statusCode = 302;
-	response.setHeader("Location", '/thanks.html');
-	response.end();
+	response.render('thanks');
 });
 
 app.get('/api/members.json', function (request, response) {
