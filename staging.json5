@@ -22,7 +22,7 @@ apps : [
   deploy : {
     staging : {
       user : "node",
-      host : "178.62.10.18",
+      host : "staging.smallmoves.club",
       ref  : "origin/staging",
       repo : "https://github.com/smallmovesclub/smallmoves.club.git",
       path : "/www/staging.smallmoves.club",

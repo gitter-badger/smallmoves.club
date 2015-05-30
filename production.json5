@@ -22,7 +22,7 @@ apps : [
   deploy : {
     production : {
       user : "node",
-      host : "178.62.10.18",
+      host : "smallmoves.club",
       ref  : "origin/master",
       repo : "https://github.com/smallmovesclub/smallmoves.club.git",
       path : "/www/smallmoves.club",
