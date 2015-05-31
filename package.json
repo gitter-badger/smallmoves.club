@@ -18,10 +18,13 @@
   "homepage": "https://github.com/smallmovesclub/smallmovesclub.github.io",
   "devDependencies": {
     "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
+    "gulp-jshint": "^1.11.0",
+    "gulp-notify": "^2.2.0",
     "gulp-ruby-sass": "^1.0.5",
     "gulp-sitemap": "^2.1.0",
-    "gulp-concat": "^2.5.2",
-    "gulp-uglify": "^1.2.0"
+    "gulp-uglify": "^1.2.0",
+    "jshint-stylish": "^2.0.0"
   },
   "dependencies": {
     "body-parser": "^1.12.4",

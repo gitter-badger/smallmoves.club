@@ -2,7 +2,11 @@ var gulp    = require('gulp'),
     sass    = require('gulp-ruby-sass'),
     sitemap = require('gulp-sitemap'),
     uglify  = require('gulp-uglify'),
-    concat  = require('gulp-concat');
+    concat  = require('gulp-concat'),
+    jshint  = require('gulp-jshint'),
+    stylish = require('jshint-stylish'),
+    notify  = require('gulp-notify'),
+    beep    = require('beepbeep');
 
 gulp.task('styles', function() {
 	return sass('src/sass/', { style: 'nested' })
@@ -32,9 +36,18 @@ gulp.task('minify', function() {
 	       .pipe(gulp.dest('public/js/'));
 });
 
+gulp.task('jshint', function() {
+	return gulp.src('app/**/*.js')
+	       .pipe(jshint())
+ 	       .pipe(jshint.reporter(stylish))
+ 	       .pipe(jshint.reporter('fail'))
+           .on('error', notify.onError({ message: '<%= error.message %>'}));
+});
+
 gulp.task('watch',  function() {
 	gulp.watch('src/js/*.js', ['minify']);
 	gulp.watch('src/sass/*.scss', ['styles']);
+	gulp.watch('app/**/*.js', ['jshint']);
 	gulp.watch('public/*.html', ['sitemap']);
 });
 
@@ -42,5 +55,4 @@ gulp.task('default', ['styles', 'sitemap'], function() {
 });
 
 gulp.task('build', ['vendor', 'minify', 'styles'], function() {
-
 });
