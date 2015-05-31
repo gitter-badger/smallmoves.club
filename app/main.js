@@ -1,7 +1,7 @@
 var express = require('express');
 var hbs = require('express-hbs');
 var bodyParser  = require('body-parser');
-var config = require('./config.json')
+var config = require('./config.json');
 var tasks = require('./signup-tasks');
 var Member = require("./models/member");
 
@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.get('/', function (request, response) {
 	Member.count({ "joined_slack": true }, function (err, count) {
 	    response.render('home', { headerClass: "alt reveal", memberCount: count });
-	})
+	});
 });
 
 app.post('/signup', function(request, response) {
@@ -30,7 +30,7 @@ app.post('/signup', function(request, response) {
 	request.body.last_name = request.body.last_name.trim();
 	request.body.name = request.body.first_name + " " + request.body.last_name;
 
-	if(typeof config['RUN_TASKS'] != 'undefined' && config['RUN_TASKS'] == true) {
+	if(typeof config.RUN_TASKS != 'undefined' && config.RUN_TASKS === true) {
 		tasks.logMember(request.body);
 		if(request.body.newsletter == 'on')
 			tasks.newsletterSubscribe(request.body);

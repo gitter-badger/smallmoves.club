@@ -1,4 +1,4 @@
-var config = require('./config.json')
+var config = require('./config.json');
 
 var GoogleSpreadsheet = require("edit-google-spreadsheet");
 var mcapi = require('mailchimp-api');
@@ -10,12 +10,12 @@ var Member = require("./models/member");
 exports.logMember = function(data) {
 	GoogleSpreadsheet.load({
 			debug: true,
-			spreadsheetId: config['SPREADSHEET_ID'],
-			worksheetId: config['WORKSHEET_ID'],
+			spreadsheetId: config.SPREADSHEET_ID,
+			worksheetId: config.WORKSHEET_ID,
 
 			oauth: {
-				email: config['GOOGLE_SERVICE_ACCOUNT'],
-				keyFile: config['GOOGLE_KEYFILE']
+				email: config.GOOGLE_SERVICE_ACCOUNT,
+				keyFile: config.GOOGLE_KEYFILE
 			}
 		},
 
@@ -52,10 +52,10 @@ exports.logMember = function(data) {
 };
 
 exports.newsletterSubscribe = function(data) {
-	mc = new mcapi.Mailchimp(config['MAILCHIMP_API_KEY']);
+	mc = new mcapi.Mailchimp(config.MAILCHIMP_API_KEY);
 
 	var mcData = {
-    	id: config['MAILCHIMP_LIST_ID'],
+    	id: config.MAILCHIMP_LIST_ID,
     	email: { email: data.email },
     	merge_vars: {
     		EMAIL: data.email,
@@ -74,7 +74,7 @@ exports.newsletterSubscribe = function(data) {
 exports.slackInvite = function(data) {
 	request.post({url: 'https://smallmoves.slack.com/api/users.admin.invite',
 	              formData: {
-	              	token: config['SLACK_API_TOKEN'],
+	              	token: config.SLACK_API_TOKEN,
 	         		email: data.email
 	              }
 	             }, function (error, response, body) {
@@ -83,7 +83,7 @@ exports.slackInvite = function(data) {
 };
 
 exports.notifySignup = function(data) {
-	var mandrill_client = new mandrill.Mandrill(config['MANDRILL_API_KEY']);
+	var mandrill_client = new mandrill.Mandrill(config.MANDRILL_API_KEY);
 
 	var template_name = "small-moves-join-transactional";
 	var template_content = [{
@@ -97,7 +97,7 @@ exports.notifySignup = function(data) {
 	    "from_email": "no-reply@smallmoves.club",
 	    "from_name": "Small Moves Club",
 	    "to": [{
-	            "email": config['SIGNUPS_NOTIFICATION_EMAIL'],
+	            "email": config.SIGNUPS_NOTIFICATION_EMAIL,
 	            "name": "Recipient Name",
 	            "type": "to"
 	        }],
@@ -116,15 +116,15 @@ exports.notifySignup = function(data) {
 };
 
 exports.signupAnnounce = function(data) {
-	request.post({url: config['SIGNUPS_WEBHOOK'],
+	request.post({url: config.SIGNUPS_WEBHOOK,
 	              body: JSON.stringify({
               		     	text: data.name + " just signed up to Small Moves!",
-              		     	channel: config['SIGNUPS_CHANNEL'],
+              		     	channel: config.SIGNUPS_CHANNEL,
               			  	username: "smallbot",
               		     	icon_url: "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2015-05-17/4943857629_7d41bc45de2198efa81e_72.jpg"
 		              	})
 	             }, function (error, response, body) {
-				 	console.log('Signup announcement sent to ' + config['SIGNUPS_CHANNEL'] + ' (' + body + ')');
+				 	console.log('Signup announcement sent to ' + config.SIGNUPS_CHANNEL + ' (' + body + ')');
 	             });
 
-}
+};
