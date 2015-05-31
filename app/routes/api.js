@@ -32,10 +32,15 @@ router.post('/joined_slack', function (request, response) {
 				if(err)
 					response.status(500).json({ error: 'Error running query: ' + err });
 				else if(member) {
-					member.joined_slack = true;
-					member.save();
+					if(member.joined_slack)
+						response.status(400).json({ error: 'Member already marked as joined' });
+					else {
+						member.joined_slack = true;
+						member.joined_slack_date = Date.now();
+						member.save();
 
-					response.status(200).json({ message: 'Member join status updated' });
+						response.status(200).json({ message: 'Member marked as joined' });
+					}
 				} else
 					response.status(404).json({ error: 'Unknown member' });
 			});

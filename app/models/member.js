@@ -12,7 +12,8 @@ var memberSchema = new Schema({
   twitter: String,
   goal: String,
   signup_date: { type: Date, default: Date.now },
-  joined_slack: { type: Boolean, default: false }
+  joined_slack: { type: Boolean, default: false },
+  joined_slack_date: Date
 });
 
 memberSchema.methods.name = function() {
