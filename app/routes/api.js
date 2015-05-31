@@ -14,6 +14,17 @@ router.get('/members.json', function (request, response) {
 	});
 });
 
+router.get('/member/:email', function (request, response) {
+	Member.findOne({ email: request.params.email }).exec(function (err, member) {
+		if(err)
+			response.status(500).json({ error: 'Error running query: ' + err });
+		else if(member) {
+			response.status(200).json(member);
+		} else
+			response.status(404).json({ error: 'Unknown member' });
+	});
+});
+
 router.post('/joined_slack', function (request, response) {
 	if(helpers.api_authenticated(request.body.api_key))
 		if(request.body.email)
