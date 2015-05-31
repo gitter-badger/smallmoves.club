@@ -1,4 +1,4 @@
-var config = require('./config.json');
+var config = require('./config.js');
 
 var GoogleSpreadsheet = require("edit-google-spreadsheet");
 var mcapi = require('mailchimp-api');
@@ -10,12 +10,12 @@ var Member = require("./models/member");
 exports.logMember = function(data) {
 	GoogleSpreadsheet.load({
 			debug: true,
-			spreadsheetId: config.SPREADSHEET_ID,
-			worksheetId: config.WORKSHEET_ID,
+			spreadsheetId: config.google.spreadsheet_id,
+			worksheetId: config.google.worksheet_id,
 
 			oauth: {
-				email: config.GOOGLE_SERVICE_ACCOUNT,
-				keyFile: config.GOOGLE_KEYFILE
+				email: config.google.service_account,
+				keyFile: config.google.keyfile
 			}
 		},
 
@@ -52,10 +52,10 @@ exports.logMember = function(data) {
 };
 
 exports.newsletterSubscribe = function(data) {
-	mc = new mcapi.Mailchimp(config.MAILCHIMP_API_KEY);
+	mc = new mcapi.Mailchimp(config.mailchimp.api_key);
 
 	var mcData = {
-    	id: config.MAILCHIMP_LIST_ID,
+    	id: config.mailchimp.list_id,
     	email: { email: data.email },
     	merge_vars: {
     		EMAIL: data.email,
@@ -72,9 +72,9 @@ exports.newsletterSubscribe = function(data) {
 };
 
 exports.slackInvite = function(data) {
-	request.post({url: 'https://smallmoves.slack.com/api/users.admin.invite',
+	request.post({url: 'https://' + config.slack.team_name + '.slack.com/api/users.admin.invite',
 	              formData: {
-	              	token: config.SLACK_API_TOKEN,
+	              	token: config.slack.api_token,
 	         		email: data.email
 	              }
 	             }, function (error, response, body) {
@@ -83,32 +83,30 @@ exports.slackInvite = function(data) {
 };
 
 exports.notifySignup = function(data) {
-	var mandrill_client = new mandrill.Mandrill(config.MANDRILL_API_KEY);
+	var mandrill_client = new mandrill.Mandrill(config.mailchimp.mandrill_api_key);
 
-	var template_name = "small-moves-join-transactional";
 	var template_content = [{
         "name": data.name,
         "email": data.email
     }];
 	var message = {
-	    "html": "<p>Example HTML content</p>",
-	    "text": "Example text content",
-	    "subject": "New Small Moves Signup from " + data.name,
-	    "from_email": "no-reply@smallmoves.club",
-	    "from_name": "Small Moves Club",
+	    "subject": "New " + config.community_name + " signup from " + data.name,
+	    "from_email": config.contact_email,
+	    "from_name": config.community_name,
 	    "to": [{
-	            "email": config.SIGNUPS_NOTIFICATION_EMAIL,
+	            "email": config.signups_notification_email,
 	            "name": "Recipient Name",
 	            "type": "to"
 	        }],
 	    "headers": {
-	        "Reply-To": "hello@smallmoves.club"
+	        "Reply-To": config.contact_email
 	    },
 	    "tags": [
 	        "signup"
-	    ]	};
+	    ]};
 
-	mandrill_client.messages.sendTemplate({"template_name": template_name, "template_content": template_content, "message": message}, function(result) {
+	// TODO: Fix template content injection
+	mandrill_client.messages.sendTemplate({"template_name": config.mailchimp.mandrill_template, "template_content": template_content, "message": message}, function(result) {
 	    console.log(result);
 	}, function(e) {
 	    console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
@@ -116,15 +114,13 @@ exports.notifySignup = function(data) {
 };
 
 exports.signupAnnounce = function(data) {
-	request.post({url: config.SIGNUPS_WEBHOOK,
+	request.post({url: config.slack.incoming_webhook,
 	              body: JSON.stringify({
               		     	text: data.name + " just signed up to Small Moves!",
-              		     	channel: config.SIGNUPS_CHANNEL,
-              			  	username: "smallbot",
-              		     	icon_url: "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2015-05-17/4943857629_7d41bc45de2198efa81e_72.jpg"
+              		     	channel: config.slack.signups_channel
 		              	})
 	             }, function (error, response, body) {
-				 	console.log('Signup announcement sent to ' + config.SIGNUPS_CHANNEL + ' (' + body + ')');
+				 	console.log('Signup announcement sent to ' + config.slack.signups_channel + ' (' + body + ')');
 	             });
 
 };

@@ -5,8 +5,7 @@ var gulp    = require('gulp'),
     concat  = require('gulp-concat'),
     jshint  = require('gulp-jshint'),
     stylish = require('jshint-stylish'),
-    notify  = require('gulp-notify'),
-    beep    = require('beepbeep');
+    notify  = require('gulp-notify');
 
 gulp.task('styles', function() {
 	return sass('src/sass/', { style: 'nested' })

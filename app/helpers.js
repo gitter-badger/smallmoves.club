@@ -1,14 +1,14 @@
-var config = require('./config.json');
+var config = require('./config.js');
 
 exports.run_signup_task = function(task_id) {
-	if(typeof config.SIGNUP_TASKS == 'undefined')
+	if(typeof config.signup_tasks == 'undefined')
 		return true;
 	else
-		return config.SIGNUP_TASKS == 'all' ||
-	    	   config.SIGNUP_TASKS.indexOf('all') >= 0 ||
-		       config.SIGNUP_TASKS.indexOf(task_id) >= 0; 
+		return config.signup_tasks == 'all' ||
+	    	   config.signup_tasks.indexOf('all') >= 0 ||
+		       config.signup_tasks.indexOf(task_id) >= 0; 
 };
 
 exports.api_authenticated = function(api_key) {
-	return api_key && config.API_KEYS.indexOf(api_key) >= 0;
+	return api_key && config.api.api_keys.indexOf(api_key) >= 0;
 };

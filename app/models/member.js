@@ -1,7 +1,8 @@
-var mongoose = require('mongoose');
-var config = require('../config.json');
+var config = require('../config.js');
 
-mongoose.connect(config.MONGODB_URL);
+var mongoose = require('mongoose');
+mongoose.connect(config.mongodb_url);
+
 var Schema = mongoose.Schema;
 
 var memberSchema = new Schema({

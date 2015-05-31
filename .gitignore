@@ -2,4 +2,5 @@
 .sass-cache/
 node_modules
 config.json
+app/config.js
 googleapi-privatekey.pem
