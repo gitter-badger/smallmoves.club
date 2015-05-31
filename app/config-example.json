@@ -1,5 +1,5 @@
 {
-	"RUN_TASKS": true,
+	"SIGNUP_TASKS": "all",
 	"GOOGLE_SERVICE_ACCOUNT": "",
 	"GOOGLE_KEYFILE": "",
 	"SPREADSHEET_ID": "",
@@ -11,5 +11,7 @@
 	"SIGNUPS_NOTIFICATION_EMAIL": ""
 	"SIGNUPS_WEBHOOK": "",
 	"SIGNUPS_CHANNEL": "",
-	"MONGODB_URL": ""
+	"MONGODB_URL": "",
+	"API_KEYS": [],
+	"MEMBER_API_WHITELIST": "first_name last_name email newsletter twitter signup_date joined_slack joined_slack_date"
 }

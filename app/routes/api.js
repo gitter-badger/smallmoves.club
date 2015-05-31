@@ -1,20 +1,21 @@
 var helpers = require('../helpers');
 var Member = require('../models/member');
+var config = require('../config.json');
 
+var	Whitelist = require('whitelist');
 var express = require('express');
 var router = express.Router();
 
-router.get('/members.json', function (request, response) {
+router.get('/members.json', Whitelist.middleware(config.MEMBER_API_WHITELIST), function (request, response) {
 	Member.find(function(err, members) {
 	    if (err)
-	        response.send(err);
-
-	    // TODO: Whitelist fields
-	    response.json(members);
+	        response.status(500).send({ error: 'Error running query: ' + err});
+	    else
+	    	response.json(members);
 	});
 });
 
-router.get('/member/:email', function (request, response) {
+router.get('/member/:email', Whitelist.middleware(config.MEMBER_API_WHITELIST), function (request, response) {
 	Member.findOne({ email: request.params.email }).exec(function (err, member) {
 		if(err)
 			response.status(500).json({ error: 'Error running query: ' + err });
