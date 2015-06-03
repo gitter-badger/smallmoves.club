@@ -1,10 +1,13 @@
-var helpers = require('../helpers');
-var Member = require('../models/member');
-var config = require('../config.js');
+var helpers   = require('../helpers'),
+    Member    = require('../models/member'),
+    config    = require('../config.js'),
 
-var	Whitelist = require('whitelist');
-var express = require('express');
-var router = express.Router();
+    Whitelist = require('whitelist'),
+    express   = require('express'),
+    cors      = require('cors'),
+    router    = express.Router();
+
+router.use(cors());
 
 router.get('/members.json', Whitelist.middleware(config.api.member_whitelist), function (request, response) {
 	Member.find(function(err, members) {
