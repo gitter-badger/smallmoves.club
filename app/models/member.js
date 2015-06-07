@@ -14,7 +14,9 @@ var memberSchema = new Schema({
   goal: String,
   signup_date: { type: Date, default: Date.now },
   joined_slack: { type: Boolean, default: false },
-  joined_slack_date: Date
+  joined_slack_date: Date,
+  slack_user_id: String,
+  slack_user_name: String
 });
 
 memberSchema.methods.name = function() {

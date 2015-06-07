@@ -41,6 +41,12 @@ router.post('/joined_slack', function (request, response) {
 					else {
 						member.joined_slack = true;
 						member.joined_slack_date = Date.now();
+
+						if(request.body.slack_user_id)
+							member.slack_user_id = request.body.slack_user_id;
+						if(request.body.slack_user_name)
+							member.slack_user_name = request.body.slack_user_name;
+
 						member.save();
 
 						response.status(200).json({ message: 'Member marked as joined' });
