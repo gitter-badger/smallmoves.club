@@ -1,0 +1,23 @@
+{{!< main}}
+		<!-- Main -->
+			<article id="main">
+
+				<!-- One -->
+					<section class="wrapper style4 container">
+
+						<!-- Content -->
+							<div class="content">
+								<section>
+									<header>
+										<h3>Our Members</h3>
+									</header>
+									<ul id="members-list">
+										{{#each members}}
+										<li>{{first_name}} {{last_name}} {{#if twitter}}(<a href="http://twitter.com/{{ twitter }}">@{{ twitter }}</a>){{/if}}</li>
+										{{/each}}
+									</ul>    
+								</section>
+							</div>
+
+					</section>
+			</article>

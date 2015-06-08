@@ -31,4 +31,13 @@ router.post('/signup', function(request, response) {
 	response.render('thanks');
 });
 
+router.get('/members', function(request, response) {
+	Member.find({ joined_slack: true }, function(err, members) {
+    if (err)
+        response.status(500).send({ error: 'Error running query: ' + err});
+    else
+		response.render('members', { members: members });
+	});
+});
+
 module.exports = router;
