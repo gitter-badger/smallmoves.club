@@ -12,11 +12,11 @@ Currenly, a Node.js app does the following:
 * Adds them to a Mailchimp mailing list
 * Announces the signup on a private admin group on Slack
 * Sends an admin a further notification email
+* Marks memebers as actually joined when they sign up to Slack ([via smallbot](https://github.com/smallmovesclub/smallbot)
 
 Future plans include:
 
-* Track when members have actually accepted their Slack invite
-* Display a member directory on the web site (likely via Angular.js)
-* Allow members to update their profile details by messaging a [bot](https://github.com/smallmovesclub/smallbot)
+* Display a member directory on the web site)
+* Allow members to update their profile details by messaging the bot.
 
 The site is based on [Twenty](http://html5up.net/twenty) from the awesome HTML5 Up.
