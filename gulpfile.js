@@ -4,6 +4,7 @@ var gulp    = require('gulp'),
     uglify  = require('gulp-uglify'),
     concat  = require('gulp-concat'),
     jshint  = require('gulp-jshint'),
+	mocha   = require('gulp-mocha'),
     stylish = require('jshint-stylish'),
     notify  = require('gulp-notify');
 
@@ -41,6 +42,14 @@ gulp.task('jshint', function() {
  	       .pipe(jshint.reporter(stylish))
  	       .pipe(jshint.reporter('fail'))
            .on('error', notify.onError({ message: '<%= error.message %>'}));
+});
+
+gulp.task('test', function () {
+    return gulp.src('test/**/*.js', {read: false})
+	    .pipe(mocha({reporter: 'spec'}))
+	    .once('end', function () {
+        	process.exit();
+        });
 });
 
 gulp.task('watch',  function() {
