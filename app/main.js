@@ -1,9 +1,13 @@
-var express = require('express');
-var hbs = require('express-hbs');
-var bodyParser  = require('body-parser');
-var helpers = require('./helpers');
+var express     = require('express'),
+    hbs         = require('express-hbs'),
+    bodyParser  = require('body-parser'),
+    helpers     = require('./helpers'),
+    morgan      = require('morgan');
 
 var app = express();
+
+if(app.get('env') == 'dev')
+	app.use(morgan('dev'));
 
 // Set up handlebars template engine
 app.engine('html', hbs.express4({ extname: '.html', layoutsDir: __dirname + '/views/layouts' }));
@@ -20,7 +24,7 @@ app.use('/api', require("./routes/api.js"));
 app.use('/', require("./routes/site.js"));
 
 var server = app.listen(app.get('port'), function() {
-	console.log('Listening on port ' + app.get('port') + '... (' + process.env.NODE_ENV + ')');
+	console.log('Listening on port ' + app.get('port') + '... (' + app.get('env') + ')');
 });
 
 module.exports = server;
