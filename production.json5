@@ -26,7 +26,7 @@ apps : [
       ref  : "origin/master",
       repo : "https://github.com/smallmovesclub/smallmoves.club.git",
       path : "/www/smallmoves.club",
-      "post-deploy" : "npm install && pm2 startOrRestart production.json5 --env production",
+      "post-deploy" : "npm install && pm2 startOrRestart production.json5 --env production && gulp decrypt",
       env  : {
         NODE_ENV: "production",
         PORT: 8001

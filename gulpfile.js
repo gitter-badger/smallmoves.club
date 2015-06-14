@@ -6,7 +6,8 @@ var gulp    = require('gulp'),
     jshint  = require('gulp-jshint'),
 	mocha   = require('gulp-mocha'),
     stylish = require('jshint-stylish'),
-    notify  = require('gulp-notify');
+    notify  = require('gulp-notify'),
+    shell   = require('gulp-shell');
 
 gulp.task('styles', function() {
 	return sass('src/sass/', { style: 'nested' })
@@ -44,6 +45,14 @@ gulp.task('jshint', function() {
            .on('error', notify.onError({ message: '<%= error.message %>'}));
 });
 
+gulp.task('encrypt', shell.task([
+  'echo $CONFIG_PASSWORD | ./node_modules/.bin/encrypt app/config.js app/config.js.cast5'
+]));
+
+gulp.task('decrypt', shell.task([
+  'echo $CONFIG_PASSWORD | ./node_modules/.bin/decrypt app/config.js.cast5 app/config.js'
+]));
+
 gulp.task('test', function () {
     return gulp.src('test/**/*.js', {read: false})
 	    .pipe(mocha({reporter: 'spec'}))
@@ -62,5 +71,5 @@ gulp.task('watch',  function() {
 gulp.task('default', ['styles', 'sitemap'], function() {
 });
 
-gulp.task('build', ['vendor', 'minify', 'styles'], function() {
+gulp.task('build', ['vendor', 'minify', 'styles', 'encrypt'], function() {
 });

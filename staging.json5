@@ -26,7 +26,7 @@ apps : [
       ref  : "origin/staging",
       repo : "https://github.com/smallmovesclub/smallmoves.club.git",
       path : "/www/staging.smallmoves.club",
-      "post-deploy" : "npm install && pm2 startOrRestart staging.json5 --env staging",
+      "post-deploy" : "npm install && pm2 startOrRestart staging.json5 --env staging && gulp decrypt",
       env  : {
         NODE_ENV: "staging",
         PORT: 8002
