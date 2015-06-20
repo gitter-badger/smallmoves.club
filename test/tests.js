@@ -55,7 +55,7 @@ describe('Server', function () {
 describe('Test the API', function () {
 	it('Responds with members list', function(done){
 		supertest(server)
-		.get('/api/members.json')
+		.get('/api/members')
 		.set('Accept', 'application/json')
 		.expect('Content-Type', /json/)
 		.expect(200, done);
@@ -63,7 +63,7 @@ describe('Test the API', function () {
 
 		it('Responds with valid, indvidual member info', function (done) {
 			supertest(server)
-				.get('/api/member/hello@smallmoves.club')
+				.get('/api/members/hello@smallmoves.club')
 				.set('Accept', 'application/json')
 				.expect('Content-Type', /json/)
 				.expect(200, done);
@@ -71,7 +71,7 @@ describe('Test the API', function () {
 
 		it('Responds with an error for unknown member', function (done) {
 			supertest(server)
-				.get('/api/member/unknown@smallmoves.club')
+				.get('/api/members/unknown@smallmoves.club')
 				.set('Accept', 'application/json')
 				.expect('Content-Type', /json/)
 				.expect(404, done);
