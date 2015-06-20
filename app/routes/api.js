@@ -9,7 +9,20 @@ var helpers   = require('../helpers'),
 
 router.use(cors());
 
-router.get('/members.json', Whitelist.middleware(config.api.member_whitelist), function (request, response) {
+router.use(function(request, response, next) {
+	api_key = request.query.api_key || request.body.api_key;
+
+	if(config.api.auth_whitelist.indexOf(request.path.replace(/^\/([^\/]*).*$/, '$1')) > -1)
+		next();
+	else {
+		if(helpers.api_authenticated(api_key))
+			next();
+		else
+			response.status(403).json({ error: 'Invalid API key' });
+	}
+});
+
+router.get('/members/', Whitelist.middleware(config.api.member_whitelist), function (request, response) {
 	Member.find(function(err, members) {
 	    if (err)
 	        response.status(500).send({ error: 'Error running query: ' + err});
@@ -18,8 +31,8 @@ router.get('/members.json', Whitelist.middleware(config.api.member_whitelist), f
 	});
 });
 
-router.get('/member/:email', Whitelist.middleware(config.api.member_whitelist), function (request, response) {
-	Member.findOne({ email: request.params.email }).exec(function (err, member) {
+router.get('/members/:id', Whitelist.middleware(config.api.member_whitelist), function (request, response) {
+	Member.findOne({ $or: [{ email: request.params.id }, { slack_user_id: request.params.id } ]}, function (err, member) {
 		if(err)
 			response.status(500).json({ error: 'Error running query: ' + err });
 		else if(member) {
@@ -29,35 +42,33 @@ router.get('/member/:email', Whitelist.middleware(config.api.member_whitelist), 
 	});
 });
 
-router.post('/joined_slack', function (request, response) {
-	if(helpers.api_authenticated(request.body.api_key))
-		if(request.body.email)
-			Member.findOne({ email: request.body.email }).exec(function (err, member) {
-				if(err)
-					response.status(500).json({ error: 'Error running query: ' + err });
-				else if(member) {
-					if(member.joined_slack)
-						response.status(400).json({ error: 'Member already marked as joined' });
-					else {
-						member.joined_slack = true;
-						member.joined_slack_date = Date.now();
-
-						if(request.body.slack_user_id)
-							member.slack_user_id = request.body.slack_user_id;
-						if(request.body.slack_user_name)
-							member.slack_user_name = request.body.slack_user_name;
-
-						member.save();
-
-						response.status(200).json({ message: 'Member marked as joined' });
-					}
-				} else
-					response.status(404).json({ error: 'Unknown member' });
-			});
+router.patch('/members/:id', function(request, response) {
+	Member.findOneAndUpdate({ $or: [{ slack_user_id: request.params.id }, { email: request.params.id }] }, request.body, function(err, row) {
+		if(err)
+			response.send(err);
+		else if(row)
+			response.json({ status: 'OK' });
 		else
-			response.status(400).json({ error: 'Missing parameter (email)' });
+			response.status(404).json({ error: 'Unknown member' });
+	});
+});
+
+router.get('/unsub', function(request, response) {
+	response.json({ status: 'OK' });
+});
+
+router.post('/unsub', function(request, response) {
+	var body = request.body;
+
+	if(body.type && body.type == 'unsubscribe')
+		Member.findOneAndUpdate({ email: body.data.email }, { newsletter: false, newsletter_unsubscribed: true }, function (err, row) {
+			if(err)
+				response.send(err);
+			else
+				response.json({ status: 'OK' });
+		});
 	else
-		response.status(403).json({ error: 'Invalid API key' });
+		response.json({ message: 'Skipping unhandled event type'});
 });
 
 module.exports = router;

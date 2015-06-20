@@ -10,6 +10,7 @@ var memberSchema = new Schema({
   last_name: String,
   email: { type: String, required: true, unique: true },
   newsletter: Boolean,
+  newsletter_unsubscribed: Boolean,
   twitter: String,
   goal: String,
   signup_date: { type: Date, default: Date.now },
