@@ -12,7 +12,8 @@ router.use(cors());
 router.use(function(request, response, next) {
 	api_key = request.query.api_key || request.body.api_key;
 
-	if(config.api.auth_whitelist.indexOf(request.path.replace(/^\/([^\/]*).*$/, '$1')) > -1)
+	if(config.api.auth_whitelist[request.method] &&
+	   config.api.auth_whitelist[request.method].indexOf(request.path.replace(/^\/([^\/]*).*$/, '$1')) > -1)
 		next();
 	else {
 		if(helpers.api_authenticated(api_key))
