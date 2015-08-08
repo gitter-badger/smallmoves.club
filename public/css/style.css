@@ -266,6 +266,11 @@ input[type="email"] {
       color: #fff; }
       .icon.circle.fa-dribbble:hover {
         background: #df93b8; }
+    .icon.circle.fa-trello {
+      background: #0079bf;
+      color: #fff; }
+      .icon.circle.fa-trello:hover {
+        background: #0086d3; }
   .icon.featured {
     cursor: default;
     display: block;

@@ -333,6 +333,16 @@ $pattern-background-size: 25em;
 					background: lighten($color-dribbble-bg, 4);
 				}
 			}
+
+			&.fa-trello {
+				background: $color-trello-bg;
+				color: $color-trello-fg;
+
+				&:hover {
+					background: lighten($color-trello-bg, 4);
+				}
+			}
+
 		}
 		
 		&.featured {

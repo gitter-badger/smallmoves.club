@@ -4,3 +4,4 @@ node_modules
 config.json
 app/config.js
 googleapi-privatekey.pem
+npm-debug.log
